@@ -1,0 +1,56 @@
+# Root-level .gitignore for DeFi Staking Vault Monorepo
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+.tmp/
+temp/
+
+# Node modules (if accidentally placed in root)
+node_modules/
+
+# Build outputs (if accidentally placed in root)
+dist/
+build/
+out/
+
+# Coverage reports
+coverage/
+
+# Cache directories
+.cache/
+
+# Package manager lock files (optional - comment out if you want to track them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
