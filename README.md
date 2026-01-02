@@ -32,14 +32,19 @@ defi-staking-vault-main/
     ├── app/                     # Next.js App Router
     │   ├── page.tsx            # Landing page
     │   ├── (routes)/
-    │   │   └── dashboard/
-    │   │       ├── page.tsx    # Staking dashboard
-    │   │       ├── loading.tsx # Loading skeleton
-    │   │       └── error.tsx   # Error boundary
+    │   │   ├── dashboard/
+    │   │   │   ├── page.tsx    # Staking dashboard
+    │   │   │   ├── loading.tsx # Loading skeleton
+    │   │   │   └── error.tsx   # Error boundary
+    │   │   └── admin/
+    │   │       └── page.tsx    # Admin panel (owner only)
     │   ├── not-found.tsx       # Custom 404 page
     │   ├── layout.tsx          # Root layout with metadata
     │   ├── providers.tsx       # Wagmi & RainbowKit providers
     │   └── globals.css         # Tailwind CSS v4 styles
+    ├── components/              # React components
+    │   ├── HowItWorks.tsx      # How It Works section
+    │   └── LoadingPopup.tsx    # Transaction loading popup
     ├── lib/                     # Utilities
     │   └── contracts.ts        # Contract addresses & ABIs
     └── package.json            # Frontend dependencies
@@ -59,11 +64,13 @@ defi-staking-vault-main/
 - **Modern UI/UX** - Glassmorphism design with gradient accents
 - **Landing Page** - Professional homepage with features showcase
 - **Dashboard** - Real-time stats (Balance, Staked, Rewards, APY)
+- **Admin Panel** - Owner-only access to manage reward rates and airdrop tokens
 - **Multi-Wallet Support** - RainbowKit integration (MetaMask, WalletConnect, etc.)
 - **Network Validation** - Automatic Sepolia testnet detection
 - **Complete Actions** - Approve, Stake, Withdraw, and Claim
 - **Live APY Calculation** - Dynamic annual percentage yield display
 - **Smart Buttons** - Color-coded (Blue=Approve, Green=Stake, Orange=Withdraw, Gold=Claim)
+- **Loading Popups** - Professional loading indicators for all transactions
 - **Next.js 16** - Latest App Router with TypeScript
 - **Error Handling** - Error boundaries and 404 page
 - **Loading States** - Skeleton screens for better UX
@@ -130,11 +137,13 @@ Visit the live deployment:
 - **Production**: https://de-fi-staking-vault.vercel.app
 - **Landing Page**: https://de-fi-staking-vault.vercel.app
 - **Dashboard**: https://de-fi-staking-vault.vercel.app/dashboard
+- **Admin Panel**: https://de-fi-staking-vault.vercel.app/admin (owner only)
 
 Or run locally:
 - Development: https://localhost:3000/
 - Landing Page: https://localhost:3000/
 - Dashboard: https://localhost:3000/dashboard
+- Admin Panel: https://localhost:3000/admin
 
 ## Testing
 
@@ -175,6 +184,30 @@ npx hardhat test
 - Wrong network detection with helpful message
 - Loading skeletons during data fetch
 - Error boundaries for graceful error handling
+- Professional loading popups for all transactions
+
+### Admin Panel (`/admin`) - Owner Only
+
+The admin panel is accessible only to the contract owner and provides:
+
+#### Reward Rate Management
+- **Current Rate Display** - View tokens per second/day/year
+- **Set Reward Rate** - Update reward distribution rate via MetaMask
+- **APY Preview** - See estimated APY before confirming changes
+
+#### Token Airdrop
+- **Airdrop MOCK Tokens** - Send tokens to any address
+- **Address Validation** - Ensures valid Ethereum addresses
+- **Balance Check** - Prevents overdraft with real-time balance display
+- **Direct Transfer** - Send tokens from owner's wallet to users
+
+#### Contract Statistics
+- View total staked amount
+- Monitor owner's token balance
+- Access contract addresses
+- Track current reward distribution
+
+**Access**: Only the contract owner (deployer) can access `/admin`. Other users will see an "Access Denied" message.
 
 ## Tech Stack
 

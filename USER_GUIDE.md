@@ -9,10 +9,11 @@ This guide will walk you through the complete process of staking tokens in the D
 1. [Prerequisites](#prerequisites)
 2. [Step-by-Step Staking Process](#step-by-step-staking-process)
 3. [Understanding the Dashboard](#understanding-the-dashboard)
-4. [How Rewards Work](#how-rewards-work)
-5. [Withdrawing and Claiming](#withdrawing-and-claiming)
-6. [Troubleshooting](#troubleshooting)
-7. [Safety Tips](#safety-tips)
+4. [Admin Panel (Owner Only)](#admin-panel-owner-only)
+5. [How Rewards Work](#how-rewards-work)
+6. [Withdrawing and Claiming](#withdrawing-and-claiming)
+7. [Troubleshooting](#troubleshooting)
+8. [Safety Tips](#safety-tips)
 
 ---
 
@@ -246,6 +247,58 @@ Your rewards start accumulating **immediately** and grow every second!
 - Enabled: When you have rewards to claim
 - Disabled: When rewards are zero
 - Claims rewards without unstaking
+
+---
+
+## Admin Panel (Owner Only)
+
+### Access
+
+The admin panel is located at `/admin` and is **only accessible to the contract owner** (the wallet that deployed the contracts).
+
+URL: https://de-fi-staking-vault.vercel.app/admin
+
+### Features
+
+#### 1. Set Reward Rate
+- **Purpose**: Control how many tokens are distributed per second
+- **Input**: Tokens per second (e.g., 0.01 = 864 tokens/day)
+- **Preview**: See estimated daily and yearly distribution
+- **Transaction**: Executed via MetaMask
+
+**Example:**
+```
+Reward Rate: 0.01 tokens/second
+= 864 tokens/day
+= 315,360 tokens/year
+```
+
+#### 2. Airdrop MOCK Tokens
+- **Purpose**: Send tokens to users for testing
+- **Required**:
+  - Valid Ethereum address (0x...)
+  - Amount to send
+  - Sufficient balance in owner wallet
+- **Validation**: Automatic address validation and balance check
+- **Transaction**: Direct transfer from owner to recipient
+
+**Use Cases:**
+- Distribute tokens to new users
+- Reward community members
+- Provide test tokens for demo purposes
+
+#### 3. Contract Statistics
+- View current reward rate
+- Check total staked amount
+- Monitor owner's token balance
+- See contract addresses
+
+### Security
+
+- **Owner Only**: Non-owners see "Access Denied" message
+- **MetaMask Required**: All actions require wallet confirmation
+- **Balance Protection**: Cannot send more tokens than owned
+- **Address Validation**: Prevents sending to invalid addresses
 
 ---
 

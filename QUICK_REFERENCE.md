@@ -89,6 +89,29 @@ Just click "Stake" again with new amount
 
 ---
 
+## Admin Panel (Owner Only)
+
+**URL**: `/admin` (Owner wallet only)
+
+### Set Reward Rate
+```
+1. Enter tokens per second (e.g., 0.01)
+2. Preview daily/yearly distribution
+3. Click "Set Reward Rate"
+4. Confirm in MetaMask
+```
+
+### Airdrop Tokens
+```
+1. Enter recipient address (0x...)
+2. Enter amount
+3. Verify balance is sufficient
+4. Click "Send Airdrop"
+5. Confirm in MetaMask
+```
+
+---
+
 ## Troubleshooting
 
 | Problem | Solution |
