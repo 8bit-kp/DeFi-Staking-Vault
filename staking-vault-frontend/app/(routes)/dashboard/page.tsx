@@ -1,14 +1,14 @@
 "use client";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Link from "next/link";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt, useChainId } from "wagmi";
 import { formatEther, parseEther } from "viem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { sepolia } from "wagmi/chains";
 import { STAKING_VAULT_ADDRESS, STAKING_VAULT_ABI, MOCK_TOKEN_ADDRESS, MOCK_TOKEN_ABI } from "@/lib/contracts";
 
-
-export default function Home() {
+export default function DashboardPage() {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const [stakeAmount, setStakeAmount] = useState("");
@@ -74,85 +74,81 @@ export default function Home() {
 
   const handleApprove = async () => {
     if (!canApprove) return;
-
     try {
       approve({
         address: MOCK_TOKEN_ADDRESS,
         abi: MOCK_TOKEN_ABI,
         functionName: "approve",
-        args: [STAKING_VAULT_ADDRESS, parsedStakeAmount],
+        args: [STAKING_VAULT_ADDRESS, parseEther("1000000")],
       });
-    } catch (e) {
-      console.error("Approve failed", e);
+    } catch (error) {
+      console.error("Approve failed:", error);
     }
   };
 
   const handleStake = async () => {
     if (!canStake) return;
-
     try {
+      const amount = parseEther(stakeAmount);
       stake({
         address: STAKING_VAULT_ADDRESS,
         abi: STAKING_VAULT_ABI,
         functionName: "stake",
-        args: [parsedStakeAmount],
+        args: [amount],
       });
-    } catch (e) {
-      console.error("Stake failed", e);
+      setStakeAmount("");
+    } catch (error) {
+      console.error("Stake failed:", error);
     }
   };
 
   const handleWithdraw = async () => {
     if (!canWithdraw) return;
-
     try {
+      const amount = parseEther(withdrawAmount);
       withdraw({
         address: STAKING_VAULT_ADDRESS,
         abi: STAKING_VAULT_ABI,
         functionName: "withdraw",
-        args: [parsedWithdrawAmount],
+        args: [amount],
       });
-    } catch (e) {
-      console.error("Withdraw failed", e);
+      setWithdrawAmount("");
+    } catch (error) {
+      console.error("Withdraw failed:", error);
     }
   };
 
   const handleClaim = async () => {
     if (!canClaim) return;
-
     try {
       claimRewards({
         address: STAKING_VAULT_ADDRESS,
         abi: STAKING_VAULT_ABI,
         functionName: "claimRewards",
       });
-    } catch (e) {
-      console.error("Claim failed", e);
+    } catch (error) {
+      console.error("Claim failed:", error);
     }
   };
 
-
-  const parsedStakeAmount =
-    stakeAmount && Number(stakeAmount) > 0
-      ? parseEther(stakeAmount)
-      : 0n;
-
-  const parsedWithdrawAmount =
-    withdrawAmount && Number(withdrawAmount) > 0
-      ? parseEther(withdrawAmount)
-      : 0n;
+  // Button enable/disable logic
+  const hasAllowance = allowance !== undefined && allowance > 0n;
+  const parsedStakeAmount = stakeAmount ? parseEther(stakeAmount) : 0n;
+  const parsedWithdrawAmount = withdrawAmount ? parseEther(withdrawAmount) : 0n;
 
   const canApprove =
     isConnected &&
-    parsedStakeAmount > 0n &&
+    !hasAllowance &&
+    balance !== undefined &&
+    balance > 0n &&
     !isApproving;
 
   const canStake =
     isConnected &&
+    hasAllowance &&
     parsedStakeAmount > 0n &&
-    allowance !== undefined &&
-    allowance >= parsedStakeAmount &&
-    !isApproving &&
+    balance !== undefined &&
+    parsedStakeAmount <= balance &&
     !isStaking;
 
   const canWithdraw =
@@ -168,53 +164,62 @@ export default function Home() {
     earnedRewards > 0n &&
     !isClaiming;
 
-  // -------- APY calculation --------
+  // APY calculation
   const SECONDS_PER_YEAR = 365n * 24n * 60n * 60n;
-
   let apy: string = "0.00";
 
-  if (
-    rewardRate !== undefined &&
-    totalStaked !== undefined &&
-    totalStaked > 0n
-  ) {
+  if (rewardRate !== undefined && totalStaked !== undefined && totalStaked > 0n) {
     const yearlyRewards = rewardRate * SECONDS_PER_YEAR;
-    const apyValue =
-      Number(formatEther(yearlyRewards)) /
-      Number(formatEther(totalStaked)) *
-      100;
-
+    const apyValue = Number(formatEther(yearlyRewards)) / Number(formatEther(totalStaked)) * 100;
     apy = apyValue.toFixed(2);
   }
 
+  // Wrong network view
   if (isWrongNetwork) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <header className="border-b border-white/10 backdrop-blur-sm bg-black/20">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+        <header className="border-b border-gray-200 dark:border-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h1 className="text-2xl font-bold text-white">Staking Vault</h1>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium"
+                >
+                  Home
+                </Link>
+                <ConnectButton />
               </div>
-              <ConnectButton />
             </div>
           </div>
         </header>
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-6 text-red-400">
-            <div className="flex items-center space-x-3">
-              <svg className="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center space-y-6">
+            <div className="w-20 h-20 bg-red-100 dark:bg-red-900/20 rounded-2xl flex items-center justify-center mx-auto">
+              <svg className="w-10 h-10 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
-              <div>
-                <h3 className="font-semibold text-lg">Wrong Network</h3>
-                <p className="text-sm mt-1">Please switch to Sepolia network to use this app.</p>
-              </div>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Wrong Network</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+              Please switch to the Sepolia testnet in your wallet to use this application.
+            </p>
+            <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-4 max-w-md mx-auto border border-gray-200 dark:border-gray-800">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                <strong>Current Network:</strong> {chainId}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <strong>Required:</strong> Sepolia ({sepolia.id})
+              </p>
             </div>
           </div>
         </main>
@@ -223,158 +228,153 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Header */}
-      <header className="border-b border-white/10 backdrop-blur-sm bg-black/20">
+      <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-gray-50/80 dark:bg-gray-950/80 backdrop-blur-sm z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold text-white">Staking Vault</h1>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium"
+              >
+                Home
+              </Link>
+              <ConnectButton />
             </div>
-            <ConnectButton />
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {!isConnected ? (
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="text-center space-y-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto flex items-center justify-center">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h2 className="text-3xl font-bold text-white">Connect Your Wallet</h2>
-              <p className="text-gray-400 max-w-md">
-                Connect your wallet to start staking tokens and earning rewards
-              </p>
+          <div className="text-center py-20 space-y-6">
+            <div className="w-20 h-20 bg-gray-200 dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto">
+              <svg className="w-10 h-10 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
             </div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Connect Your Wallet</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+              Connect your wallet to start staking tokens and earning rewards
+            </p>
           </div>
         ) : (
           <div className="space-y-6">
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Token Balance</p>
-                <p className="text-2xl font-bold text-white">
-                  {fmt(balance)}
-                </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">Your Balance</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{fmt(balance)}</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Your Staked</p>
-                <p className="text-2xl font-bold text-purple-400">
-                  {fmt(stakedBalance)}
-                </p>
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">Your Staked</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{fmt(stakedBalance)}</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                <p className="text-gray-400 text-sm mb-2">Rewards Earned</p>
-                <p className="text-2xl font-bold text-green-400">
-                  {fmt(earnedRewards)}
-                </p>
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">Rewards Earned</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{fmt(earnedRewards)}</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                <p className="text-gray-400 text-sm mb-2">APY</p>
-                <p className="text-2xl font-bold text-emerald-400">
-                  {apy}%
-                </p>
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">APY</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{apy}%</p>
               </div>
             </div>
 
-            {/* Action Cards */}
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <button
+                onClick={handleApprove}
+                disabled={!canApprove}
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium rounded-lg transition"
+              >
+                {isApproving ? "Approving..." : "Approve"}
+              </button>
+              <button
+                onClick={handleStake}
+                disabled={!canStake}
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium rounded-lg transition"
+              >
+                {isStaking ? "Staking..." : "Stake"}
+              </button>
+              <button
+                onClick={handleWithdraw}
+                disabled={!canWithdraw}
+                className="px-6 py-3 bg-orange-600 hover:bg-orange-700 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium rounded-lg transition"
+              >
+                {isWithdrawing ? "Withdrawing..." : "Withdraw"}
+              </button>
+              <button
+                onClick={handleClaim}
+                disabled={!canClaim}
+                className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white font-medium rounded-lg transition"
+              >
+                {isClaiming ? "Claiming..." : "Claim Rewards"}
+              </button>
+            </div>
+
+            {/* Input Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Stake Card */}
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-                <h3 className="text-xl font-bold text-white mb-6">Stake Tokens</h3>
-                <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Stake Tokens</h3>
+                <div className="space-y-3">
                   <div>
-                    <label className="text-gray-400 text-sm mb-2 block">Amount to Stake</label>
+                    <label className="text-sm text-gray-600 dark:text-gray-400 mb-1 block">Amount</label>
                     <input
                       type="number"
                       value={stakeAmount}
                       onChange={(e) => setStakeAmount(e.target.value)}
                       placeholder="0.0"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
                     />
                   </div>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={handleApprove}
-                      disabled={!canApprove}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:hover:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-blue-500/50 disabled:shadow-none active:scale-95"
-                    >
-                      {isApproving ? "Approving..." : "Approve"}
-                    </button>
-
-                    <button
-                      onClick={handleStake}
-                      disabled={!canStake}
-                      className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 disabled:from-gray-600 disabled:to-gray-600 disabled:hover:from-gray-600 disabled:hover:to-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-green-500/50 disabled:shadow-none active:scale-95"
-                    >
-                      {isStaking ? "Staking..." : "Stake"}
-                    </button>
-
-                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {!hasAllowance ? "Please approve first" : `Available: ${fmt(balance)}`}
+                  </p>
                 </div>
               </div>
 
               {/* Withdraw Card */}
-              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-                <h3 className="text-xl font-bold text-white mb-6">Withdraw & Claim</h3>
-                <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Withdraw Tokens</h3>
+                <div className="space-y-3">
                   <div>
-                    <label className="text-gray-400 text-sm mb-2 block">Amount to Withdraw</label>
+                    <label className="text-sm text-gray-600 dark:text-gray-400 mb-1 block">Amount</label>
                     <input
                       type="number"
                       value={withdrawAmount}
                       onChange={(e) => setWithdrawAmount(e.target.value)}
                       placeholder="0.0"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition"
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
                     />
                   </div>
-                  <button
-                    onClick={handleWithdraw}
-                    disabled={!canWithdraw}
-                    className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-600 disabled:hover:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-orange-500/50 disabled:shadow-none active:scale-95"
-                  >
-                    {isWithdrawing ? "Withdrawing..." : "Withdraw"}
-                  </button>
-
-                  <button
-                    onClick={handleClaim}
-                    disabled={!canClaim}
-                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 disabled:from-gray-600 disabled:to-gray-600 disabled:hover:from-gray-600 disabled:hover:to-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-yellow-500/50 disabled:shadow-none active:scale-95"
-                  >
-                    {isClaiming ? "Claiming..." : "Claim Rewards"}
-                  </button>
-
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Staked: {fmt(stakedBalance)}
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Info Card */}
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold mb-1">Reward Rate</h4>
-                  <p className="text-gray-400 text-sm">
-                    Current reward rate:{" "}
-                    {rewardRate
-                      ? `${formatEther(rewardRate)} tokens / sec`
-                      : "0 tokens / sec"}
+            {/* Info Section */}
+            <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-900/30 rounded-xl p-4">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-900 dark:text-white font-medium">How it works</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    1. Approve tokens → 2. Stake tokens → 3. Earn rewards → 4. Claim or withdraw anytime
                   </p>
-
                 </div>
               </div>
             </div>
