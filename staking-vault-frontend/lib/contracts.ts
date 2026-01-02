@@ -1,5 +1,5 @@
-export const STAKING_VAULT_ADDRESS = "0x0000000000000000000000000000000000000000" as `0x${string}`;
-export const MOCK_TOKEN_ADDRESS = "0x0000000000000000000000000000000000000000" as `0x${string}`;
+export const STAKING_VAULT_ADDRESS = "0xaf3c10b3f70f4eadc1d849c48f8f474ffe1b71c9" as `0x${string}`;
+export const MOCK_TOKEN_ADDRESS = "0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03" as `0x${string}`;
 
 export const STAKING_VAULT_ABI = [
   {
