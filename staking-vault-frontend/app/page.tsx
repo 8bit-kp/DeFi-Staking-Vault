@@ -4,9 +4,11 @@ import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import HowItWorks from "@/components/HowItWorks";
+import { useState } from "react";
 
 export default function HomePage() {
   const { isConnected } = useAccount();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
@@ -20,9 +22,11 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Staking Vault</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Staking Vault</h1>
             </div>
-            <div className="flex items-center gap-3">
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-3">
               {isConnected && (
                 <Link 
                   href="/dashboard"
@@ -33,7 +37,45 @@ export default function HomePage() {
               )}
               <ConnectButton />
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6 text-gray-900 dark:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4 space-y-3">
+              {isConnected && (
+                <Link 
+                  href="/dashboard"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition text-center"
+                >
+                  Dashboard
+                </Link>
+              )}
+              <div className="flex justify-center">
+                <ConnectButton />
+              </div>
+            </div>
+          )}
         </div>
       </header>
 

@@ -17,6 +17,7 @@ export default function AdminPage() {
   const [tokensPerSecond, setTokensPerSecond] = useState("");
   const [airdropAddress, setAirdropAddress] = useState("");
   const [airdropAmount, setAirdropAmount] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isWrongNetwork = chainId !== sepolia.id;
 
@@ -188,16 +189,54 @@ export default function AdminPage() {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
                 </div>
               </Link>
-              <div className="flex items-center gap-3">
+
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-3">
                 <Link href="/" className="px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium">
                   Home
                 </Link>
                 <ConnectButton />
               </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Toggle menu"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-900 dark:text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {isMobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
             </div>
+
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4 space-y-3">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium text-center"
+                >
+                  Home
+                </Link>
+                <div className="flex justify-center">
+                  <ConnectButton />
+                </div>
+              </div>
+            )}
           </div>
         </header>
 
@@ -240,7 +279,7 @@ export default function AdminPage() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
                 {isOwner && (
                   <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
                     <span className="relative flex h-2 w-2">
@@ -252,7 +291,9 @@ export default function AdminPage() {
                 )}
               </div>
             </Link>
-            <div className="flex items-center gap-3">
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-3">
               <Link href="/dashboard" className="px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium">
                 Dashboard
               </Link>
@@ -261,7 +302,50 @@ export default function AdminPage() {
               </Link>
               <ConnectButton />
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6 text-gray-900 dark:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4 space-y-3">
+              <Link
+                href="/dashboard"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium text-center"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-lg transition-colors font-medium text-center"
+              >
+                Home
+              </Link>
+              <div className="flex justify-center">
+                <ConnectButton />
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
