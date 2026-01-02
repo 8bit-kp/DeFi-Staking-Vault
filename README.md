@@ -2,6 +2,12 @@
 
 A complete decentralized staking vault application built with Solidity smart contracts and a modern Next.js frontend. Stake your ERC20 tokens and earn rewards in real-time!
 
+## Quick Links
+
+- **New User?** Start here: [USER_GUIDE.md](./USER_GUIDE.md) - Complete step-by-step staking guide
+- **Visual Learner?** Check: [STAKING_FLOW.md](./STAKING_FLOW.md) - Flow diagrams and visual guides
+- **Developer?** See technical docs below
+
 ## Live Demo
 
 **Frontend**: [Your deployment URL here]  
@@ -330,6 +336,18 @@ Need help? Here's how to get support:
 - **Feature Requests**: Open an issue with the `enhancement` label
 - **Questions**: Open a discussion in the repository
 - **Documentation**: Check our docs in the repo
+
+## Documentation Index
+
+### For Users
+- [USER_GUIDE.md](./USER_GUIDE.md) - Complete guide for new users on how to stake tokens
+- [STAKING_FLOW.md](./STAKING_FLOW.md) - Visual flow diagrams and process charts
+
+### For Developers
+- [DEPLOYMENT_INFO.md](./DEPLOYMENT_INFO.md) - Deployed contract addresses and details
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - How to contribute to this project
+- [SECURITY.md](./SECURITY.md) - Security policy and reporting vulnerabilities
+- [staking-vault-frontend/PROJECT_STRUCTURE.md](./staking-vault-frontend/PROJECT_STRUCTURE.md) - Frontend architecture
 
 ## Show Your Support
 
