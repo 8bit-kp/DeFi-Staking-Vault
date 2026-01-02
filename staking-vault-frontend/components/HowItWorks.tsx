@@ -51,7 +51,7 @@ export default function HowItWorks() {
               {/* Airdrop Info */}
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800 mb-4">
                 <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
-                  <strong>🎁 Need MOCK Tokens?</strong>
+                  <strong> Need MOCK Tokens?</strong>
                 </p>
                 <p className="text-sm text-blue-700 dark:text-blue-400">
                   Contact <a href="https://x.com/0xkishan_" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:text-blue-600 dark:hover:text-blue-300">@0xkishan_</a> on X (Twitter) for an airdrop of MOCK tokens!

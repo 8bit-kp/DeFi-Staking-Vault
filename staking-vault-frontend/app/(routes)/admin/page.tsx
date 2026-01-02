@@ -107,6 +107,7 @@ export default function AdminPage() {
         abi: STAKING_VAULT_ABI,
         functionName: "setRewardRate",
         args: [rateInWei],
+        gas: 150000n, // Set reasonable gas limit
       });
 
       toast.loading("Waiting for wallet confirmation...", { id: toastId });
@@ -380,13 +381,15 @@ export default function AdminPage() {
                   )}
                 </div>
 
-                <button
-                  onClick={handleSetRewardRate}
-                  disabled={!tokensPerSecond || isSettingRewardRateTransaction}
-                  className="w-full px-6 py-3 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white dark:text-gray-900 font-medium rounded-lg transition"
-                >
-                  {isSettingRewardRateTransaction ? "Setting Reward Rate..." : "Set Reward Rate"}
-                </button>
+                {tokensPerSecond && (
+                  <button
+                    onClick={handleSetRewardRate}
+                    disabled={isSettingRewardRateTransaction}
+                    className="w-full px-6 py-3 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 disabled:bg-gray-300 dark:disabled:bg-gray-800 disabled:cursor-not-allowed text-white dark:text-gray-900 font-medium rounded-lg transition"
+                  >
+                    {isSettingRewardRateTransaction ? "Setting Reward Rate..." : "Set Reward Rate"}
+                  </button>
+                )}
               </div>
             </div>
 
@@ -452,7 +455,7 @@ export default function AdminPage() {
 
             {/* Info Card */}
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-3">⚠️ Important Information</h3>
+              <h3 className="text-lg font-semibold text-white mb-3">Important Information</h3>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li>• <strong>Reward Rate:</strong> Only the contract owner can set the reward rate</li>
                 <li>• Changes take effect immediately after transaction confirmation</li>

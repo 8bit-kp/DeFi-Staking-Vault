@@ -146,6 +146,7 @@ export default function DashboardPage() {
         abi: MOCK_TOKEN_ABI,
         functionName: "approve",
         args: [STAKING_VAULT_ADDRESS, parseEther("1000000")],
+        gas: 100000n, // Set reasonable gas limit for approval
       });
     } catch (error: any) {
       console.error("Approve failed:", error);
@@ -162,6 +163,7 @@ export default function DashboardPage() {
         abi: STAKING_VAULT_ABI,
         functionName: "stake",
         args: [amount],
+        gas: 300000n, // Set reasonable gas limit
       });
       setStakeAmount("");
     } catch (error: any) {
@@ -171,14 +173,25 @@ export default function DashboardPage() {
   };
 
   const handleWithdraw = async () => {
-    if (!canWithdraw) return;
+    if (!canWithdraw) {
+      console.log("Cannot withdraw:", { 
+        canWithdraw, 
+        withdrawAmount, 
+        parsedWithdrawAmount: parsedWithdrawAmount.toString(),
+        stakedBalance: stakedBalance?.toString(),
+        isWithdrawingTransaction 
+      });
+      return;
+    }
     try {
       const amount = parseEther(withdrawAmount);
+      console.log("Withdrawing amount:", amount.toString());
       withdraw({
         address: STAKING_VAULT_ADDRESS,
         abi: STAKING_VAULT_ABI,
         functionName: "withdraw",
         args: [amount],
+        gas: 300000n, // Set reasonable gas limit
       });
       setWithdrawAmount("");
     } catch (error: any) {
@@ -194,6 +207,7 @@ export default function DashboardPage() {
         address: STAKING_VAULT_ADDRESS,
         abi: STAKING_VAULT_ABI,
         functionName: "claimRewards",
+        gas: 200000n, // Set reasonable gas limit
       });
     } catch (error: any) {
       console.error("Claim failed:", error);

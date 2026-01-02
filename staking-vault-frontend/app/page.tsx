@@ -99,9 +99,9 @@ export default function HomePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Secure & Audited</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Built with Security</h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Built with industry-standard security practices and OpenZeppelin contracts
+              Developed using OpenZeppelin contracts and best practices for smart contract security
             </p>
           </div>
 
@@ -112,9 +112,9 @@ export default function HomePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Earn Rewards</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Real-Time Rewards</h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Stake your tokens and earn passive rewards with competitive APY rates
+              Watch your rewards accumulate every second with transparent, on-chain reward distribution
             </p>
           </div>
 
@@ -122,12 +122,12 @@ export default function HomePage() {
           <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600 transition">
             <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center mb-6">
               <svg className="w-8 h-8 text-gray-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Fast & Easy</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Get MOCK Tokens </h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Simple interface for staking, withdrawing, and claiming rewards in seconds
+              Need tokens to stake? Contact <a href="https://x.com/0xkishan_" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:text-gray-900 dark:hover:text-white">@0xkishan_</a> on X for an airdrop!
             </p>
           </div>
         </div>
