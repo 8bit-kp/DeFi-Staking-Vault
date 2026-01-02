@@ -30,24 +30,24 @@ Visit http://localhost:3000
 
 ## Features
 
-✨ **Minimalistic Modern UI**
+**Minimalistic Modern UI**
 - Dark gradient background (slate-900 to purple-900)
 - Glass-morphism cards with backdrop blur
 - Smooth transitions and hover effects
 - Responsive grid layout
 
-🔐 **Wallet Integration**
+**Wallet Integration**
 - Connect wallet with RainbowKit
 - SSR-safe localStorage handling
 - Real-time balance updates
 
-💰 **Staking Features**
+**Staking Features**
 - Stake tokens
 - Withdraw staked tokens
 - Claim rewards
 - View real-time stats
 
-📊 **Dashboard**
+**Dashboard**
 - Token balance
 - Staked amount
 - Earned rewards
@@ -55,8 +55,8 @@ Visit http://localhost:3000
 
 ## Fixed Issues
 
-1. ✅ localStorage error - Added SSR support with `ssr: true` config
-2. ✅ QueryClient initialization - Moved to useState hook
-3. ✅ Contract ABI - Converted to proper ABI format
-4. ✅ Type safety - Added proper TypeScript types
-5. ✅ Modern UI - Minimalistic design with gradients and glass-morphism
+1. localStorage error - Added SSR support with `ssr: true` config
+2. QueryClient initialization - Moved to useState hook
+3. Contract ABI - Converted to proper ABI format
+4. Type safety - Added proper TypeScript types
+5. Modern UI - Minimalistic design with gradients and glass-morphism

@@ -2,7 +2,7 @@
 
 Modern Next.js 16 frontend for the DeFi Staking Vault protocol.
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 staking-vault-frontend/
@@ -35,12 +35,12 @@ staking-vault-frontend/
 └── README.md                    # This file
 ```
 
-## 🚀 Routes
+## Routes
 
 - `/` - Landing page with features and hero section
 - `/dashboard` - Staking dashboard (requires wallet connection)
 
-## 🎨 Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
@@ -51,7 +51,7 @@ staking-vault-frontend/
   - Viem
 - **State Management**: TanStack Query
 
-## 🛠️ Development
+## Development
 
 ```bash
 # Install dependencies
@@ -67,7 +67,7 @@ npm run build
 npm start
 ```
 
-## 📝 Environment Variables
+## Environment Variables
 
 No environment variables needed for basic operation. The app connects to Sepolia testnet by default.
 
@@ -93,7 +93,7 @@ const config = createConfig({
 });
 ```
 
-## 📦 Key Files
+## Key Files
 
 ### `app/page.tsx`
 Home page with hero section, features, and call-to-action
@@ -117,33 +117,33 @@ Contract configurations:
 - ABIs
 - Function signatures
 
-## 🎯 Features
+## Features
 
-- ✅ Wallet connection (multiple wallets supported)
-- ✅ Network validation (Sepolia)
-- ✅ Token balance display
-- ✅ Staking functionality
-- ✅ Withdraw functionality
-- ✅ Reward claiming
-- ✅ Real-time APY calculation
-- ✅ Responsive design
-- ✅ Glass-morphism UI
+- Wallet connection (multiple wallets supported)
+- Network validation (Sepolia)
+- Token balance display
+- Staking functionality
+- Withdraw functionality
+- Reward claiming
+- Real-time APY calculation
+- Responsive design
+- Glass-morphism UI
 
-## 🔐 Security
+## Security
 
 - Client-side only (no backend)
 - No private keys stored
 - All transactions signed by user wallet
 - Network validation before operations
 
-## 📱 Responsive Design
+## Responsive Design
 
 Fully responsive across:
 - Mobile (320px+)
 - Tablet (768px+)
 - Desktop (1024px+)
 
-## 🤝 Contributing
+## Contributing
 
 1. Follow the existing folder structure
 2. Use TypeScript for type safety
@@ -151,6 +151,6 @@ Fully responsive across:
 4. Test across different screen sizes
 5. Ensure wallet connection works
 
-## 📄 License
+## License
 
 MIT

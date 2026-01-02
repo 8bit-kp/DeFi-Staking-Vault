@@ -1,14 +1,14 @@
-# 🏦 DeFi Staking Vault
+# DeFi Staking Vault
 
 A complete decentralized staking vault application built with Solidity smart contracts and a modern Next.js frontend. Stake your ERC20 tokens and earn rewards in real-time!
 
-## � Live Demo
+## Live Demo
 
 **Frontend**: [Your deployment URL here]  
 **Network**: Sepolia Testnet  
 **Deployed Contracts**: See [DEPLOYMENT_INFO.md](./DEPLOYMENT_INFO.md)
 
-## �🏗️ Project Structure
+## Project Structure
 
 ```
 defi-staking-vault-main/
@@ -39,31 +39,31 @@ defi-staking-vault-main/
     └── package.json            # Frontend dependencies
 ```
 
-## ✨ Features
+## Features
 
 ### Smart Contracts
-- ✅ **ERC20 Token Staking** - Stake any ERC20 token
-- ✅ **Automatic Rewards** - Earn rewards based on configurable rate
-- ✅ **Flexible Withdrawals** - Withdraw staked tokens anytime
-- ✅ **Claim Rewards** - Claim accumulated rewards separately
-- ✅ **Gas Optimized** - Efficient Solidity 0.8.28 implementation
-- ✅ **Security Tested** - Comprehensive test coverage
+- **ERC20 Token Staking** - Stake any ERC20 token
+- **Automatic Rewards** - Earn rewards based on configurable rate
+- **Flexible Withdrawals** - Withdraw staked tokens anytime
+- **Claim Rewards** - Claim accumulated rewards separately
+- **Gas Optimized** - Efficient Solidity 0.8.28 implementation
+- **Security Tested** - Comprehensive test coverage
 
 ### Frontend
-- 🎨 **Modern UI/UX** - Glassmorphism design with gradient accents
-- � **Landing Page** - Professional homepage with features showcase
-- 📊 **Dashboard** - Real-time stats (Balance, Staked, Rewards, APY)
-- 🌐 **Multi-Wallet Support** - RainbowKit integration (MetaMask, WalletConnect, etc.)
-- 🔐 **Network Validation** - Automatic Sepolia testnet detection
-- 💰 **Complete Actions** - Approve, Stake, Withdraw, and Claim
-- 📈 **Live APY Calculation** - Dynamic annual percentage yield display
-- 🎯 **Smart Buttons** - Color-coded (Blue=Approve, Green=Stake, Orange=Withdraw, Gold=Claim)
-- ⚡ **Next.js 16** - Latest App Router with TypeScript
-- 🚨 **Error Handling** - Error boundaries and 404 page
-- ⏳ **Loading States** - Skeleton screens for better UX
-- 📱 **Fully Responsive** - Works on all devices
+- **Modern UI/UX** - Glassmorphism design with gradient accents
+- **Landing Page** - Professional homepage with features showcase
+- **Dashboard** - Real-time stats (Balance, Staked, Rewards, APY)
+- **Multi-Wallet Support** - RainbowKit integration (MetaMask, WalletConnect, etc.)
+- **Network Validation** - Automatic Sepolia testnet detection
+- **Complete Actions** - Approve, Stake, Withdraw, and Claim
+- **Live APY Calculation** - Dynamic annual percentage yield display
+- **Smart Buttons** - Color-coded (Blue=Approve, Green=Stake, Orange=Withdraw, Gold=Claim)
+- **Next.js 16** - Latest App Router with TypeScript
+- **Error Handling** - Error boundaries and 404 page
+- **Loading States** - Skeleton screens for better UX
+- **Fully Responsive** - Works on all devices
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js v18+
@@ -122,23 +122,23 @@ Visit:
 - Landing Page: http://localhost:3000
 - Dashboard: http://localhost:3000/dashboard
 
-## 🧪 Testing
+## Testing
 
 ```bash
 cd defi-staking-vault
 npx hardhat test
 ```
 
-## 🎨 UI Features & User Flow
+## UI Features & User Flow
 
-### 🏠 Landing Page (`/`)
+### Landing Page (`/`)
 - Hero section with gradient branding
 - Feature showcase (Security, Rewards, Speed)
 - Statistics grid
 - Wallet-aware CTA button
 - Professional footer
 
-### 📊 Dashboard (`/dashboard`)
+### Dashboard (`/dashboard`)
 
 #### Stats Overview
 - **Token Balance** - Available tokens in wallet
@@ -147,22 +147,22 @@ npx hardhat test
 - **APY** - Dynamic Annual Percentage Yield calculation
 
 #### Action Buttons
-1. **Approve** (Blue 💙) - Grant vault permission to spend tokens
-2. **Stake** (Green 💚) - Deposit tokens to start earning rewards
-3. **Withdraw** (Orange 🧡) - Remove staked tokens back to wallet
-4. **Claim Rewards** (Gold 💛) - Collect earned rewards
+1. **Approve** (Blue) - Grant vault permission to spend tokens
+2. **Stake** (Green) - Deposit tokens to start earning rewards
+3. **Withdraw** (Orange) - Remove staked tokens back to wallet
+4. **Claim Rewards** (Gold) - Collect earned rewards
 
 #### Smart Features
-- ✅ Automatic allowance checking before staking
-- ✅ Disabled buttons with clear feedback messages
-- ✅ Network validation (Sepolia testnet only)
-- ✅ Real-time balance updates after each transaction
-- ✅ APY auto-calculation: `(rewardRate * SECONDS_PER_YEAR / totalStaked) * 100`
-- ✅ Wrong network detection with helpful message
-- ✅ Loading skeletons during data fetch
-- ✅ Error boundaries for graceful error handling
+- Automatic allowance checking before staking
+- Disabled buttons with clear feedback messages
+- Network validation (Sepolia testnet only)
+- Real-time balance updates after each transaction
+- APY auto-calculation: `(rewardRate * SECONDS_PER_YEAR / totalStaked) * 100`
+- Wrong network detection with helpful message
+- Loading skeletons during data fetch
+- Error boundaries for graceful error handling
 
-## 🔧 Tech Stack
+## Tech Stack
 
 ### Smart Contracts
 - **Solidity** ^0.8.28 - Smart contract language
@@ -181,7 +181,7 @@ npx hardhat test
 - **Tailwind CSS** v4 - Utility-first styling
 - **TypeScript** 5 - Type safety
 
-## 📝 Smart Contract API
+## Smart Contract API
 
 ### StakingVault.sol
 
@@ -227,7 +227,7 @@ function balanceOf(address account) external view returns (uint256)
 // Standard ERC20 balance check
 ```
 
-## 🚀 Deployment Guide
+## Deployment Guide
 
 ### Prerequisites
 1. Get Sepolia ETH from [Sepolia Faucet](https://sepoliafaucet.com/)
@@ -272,7 +272,7 @@ npm run build
 npm start  # Runs on port 3000
 ```
 
-## 🌐 Network Configuration
+## Network Configuration
 
 **Current Network**: Sepolia Testnet (Chain ID: 11155111)
 
@@ -283,7 +283,7 @@ To add Sepolia to MetaMask:
 - Currency Symbol: ETH
 - Block Explorer: https://sepolia.etherscan.io
 
-## 🧪 Local Development Tips
+## Local Development Tips
 
 ### Get Test Tokens
 ```bash
@@ -305,16 +305,16 @@ npx hardhat console --network sepolia
 **"Insufficient Allowance"**
 - Click "Approve" button first before staking
 
-## 📁 Additional Documentation
+## Additional Documentation
 
 - [DEPLOYMENT_INFO.md](./DEPLOYMENT_INFO.md) - Deployed contract details
 - [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - Frontend architecture
 
-## 📄 License
+## License
 
 MIT License - see LICENSE file for details
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 1. Fork the repository
@@ -323,20 +323,20 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📧 Support
+## Support
 
 Need help? Here's how to get support:
-- 🐛 **Bug Reports**: Open an issue with the `bug` label
-- 💡 **Feature Requests**: Open an issue with the `enhancement` label
-- 💬 **Questions**: Open a discussion in the repository
-- 📖 **Documentation**: Check our docs in the repo
+- **Bug Reports**: Open an issue with the `bug` label
+- **Feature Requests**: Open an issue with the `enhancement` label
+- **Questions**: Open a discussion in the repository
+- **Documentation**: Check our docs in the repo
 
-## ⭐ Show Your Support
+## Show Your Support
 
-If you like this project, please give it a ⭐ on GitHub!
+If you like this project, please give it a star on GitHub!
 
 ---
 
-**Built with ❤️ using Solidity, Next.js, and Web3 technologies**
+**Built using Solidity, Next.js, and Web3 technologies**
 
-Made by the DeFi community, for the DeFi community 🚀
+Made by the DeFi community, for the DeFi community

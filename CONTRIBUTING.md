@@ -1,8 +1,8 @@
 # Contributing to DeFi Staking Vault
 
-Thank you for considering contributing to the DeFi Staking Vault project! 🎉
+Thank you for considering contributing to the DeFi Staking Vault project!
 
-## 🤝 How to Contribute
+## How to Contribute
 
 ### Reporting Bugs
 
@@ -72,7 +72,7 @@ Feature requests are welcome! Please:
    ```
    Then open a Pull Request on GitHub
 
-## 📋 Code Style Guidelines
+## Code Style Guidelines
 
 ### Solidity
 - Follow [Solidity Style Guide](https://docs.soliditylang.org/en/latest/style-guide.html)
@@ -90,7 +90,7 @@ Feature requests are welcome! Please:
 - Keep custom CSS minimal
 - Maintain responsive design
 
-## 🧪 Testing Requirements
+## Testing Requirements
 
 ### Smart Contracts
 - Add unit tests for new functions
@@ -103,14 +103,14 @@ Feature requests are welcome! Please:
 - Test transaction flows
 - Verify responsive design
 
-## 🔒 Security
+## Security
 
 - Never commit private keys or sensitive data
 - Review smart contract changes carefully
 - Report security issues privately
 - Follow OpenZeppelin security practices
 
-## 📖 Documentation
+## Documentation
 
 When contributing, please update:
 - Code comments
@@ -118,7 +118,7 @@ When contributing, please update:
 - Function documentation
 - Type definitions
 
-## ✅ PR Checklist
+## PR Checklist
 
 Before submitting your PR, ensure:
 - [ ] Code builds without errors
@@ -129,20 +129,20 @@ Before submitting your PR, ensure:
 - [ ] No sensitive data committed
 - [ ] Code follows style guidelines
 
-## 🎯 Good First Issues
+## Good First Issues
 
 Look for issues labeled `good first issue` for beginner-friendly contributions!
 
-## 💬 Questions?
+## Questions?
 
 - Open a discussion in the repository
 - Comment on relevant issues
 - Check existing documentation
 
-## 📄 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 
 ---
 
-Thank you for making DeFi Staking Vault better! 🚀
+Thank you for making DeFi Staking Vault better!
