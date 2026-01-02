@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import HowItWorks from "@/components/HowItWorks";
 
 export default function HomePage() {
   const { isConnected } = useAccount();
@@ -152,6 +153,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* How It Works Section */}
+        <HowItWorks />
       </main>
 
       {/* Footer */}

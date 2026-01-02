@@ -51,6 +51,20 @@ export const STAKING_VAULT_ABI = [
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ name: "_rewardRate", type: "uint256" }],
+    name: "setRewardRate",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ] as const;
 
 export const MOCK_TOKEN_ABI = [
@@ -79,6 +93,16 @@ export const MOCK_TOKEN_ABI = [
     name: "allowance",
     outputs: [{ name: "", type: "uint256" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { name: "to", type: "address" },
+      { name: "amount", type: "uint256" },
+    ],
+    name: "transfer",
+    outputs: [{ name: "", type: "bool" }],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ] as const;

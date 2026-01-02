@@ -110,6 +110,9 @@ Note the deployed contract addresses.
 
 Already configured in `staking-vault-frontend/lib/contracts.ts`!
 
+**Need MOCK Tokens?** 🎁  
+Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop of MOCK tokens to start staking!
+
 ### 4. Run Frontend
 
 ```bash
