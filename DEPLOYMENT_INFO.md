@@ -20,16 +20,18 @@
 
 ## How to Use
 
-1. **Get Test Tokens**: The deployed MockERC20 allows anyone to mint tokens for testing
+1. **Get MOCK Tokens**: Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop! 🎁
 2. **Connect Wallet**: Use MetaMask or any Web3 wallet on Sepolia network
-3. **Interact**: Use the frontend at https://de-fi-staking-vault.vercel.app (or run locally at https://de-fi-staking-vault.vercel.app/)
+3. **Interact**: Use the frontend at https://de-fi-staking-vault.vercel.app
 
 ## Contract Interactions
 
 ### MockERC20
-- `mint(address to, uint256 amount)` - Mint test tokens
 - `approve(address spender, uint256 amount)` - Approve vault to spend tokens
 - `balanceOf(address account)` - Check token balance
+- `transfer(address to, uint256 amount)` - Transfer tokens
+
+**Need Tokens?** Contact [@0xkishan_](https://x.com/0xkishan_) on X for an airdrop!
 
 ### StakingVault
 - `stake(uint256 amount)` - Stake tokens to earn rewards

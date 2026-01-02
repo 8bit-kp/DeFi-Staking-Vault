@@ -35,7 +35,7 @@ Before you start staking, make sure you have:
 ### 3. Test Tokens to Stake
 - You'll need the MockERC20 tokens deployed on Sepolia
 - Contract Address: `0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03`
-- See [Getting Test Tokens](#getting-test-tokens) section below
+- **Get MOCK Tokens**: Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop! 🎁
 
 ---
 
@@ -60,25 +60,17 @@ If you haven't added Sepolia network yet:
 6. Click "Save"
 7. Switch to Sepolia network
 
-### Step 2: Get Test Tokens
+### Step 2: Get MOCK Test Tokens
 
-**Option A: Mint Tokens (if you have minting access)**
+**Contact for Airdrop** 🎁
 
-Open Hardhat console:
-```bash
-cd defi-staking-vault
-npx hardhat console --network sepolia
-```
+The easiest way to get MOCK tokens is to contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) with your wallet address for an airdrop!
 
-Run:
-```javascript
-const MockERC20 = await ethers.getContractAt("MockERC20", "0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03")
-await MockERC20.mint("YOUR_WALLET_ADDRESS", ethers.parseEther("1000"))
-```
-
-**Option B: Ask Project Owner**
-
-Contact the project owner to mint tokens to your address.
+**Token Details:**
+- Contract Address: `0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03`
+- Symbol: MOCK
+- Decimals: 18
+- Network: Sepolia Testnet
 
 ### Step 3: Visit the Staking Dashboard
 

@@ -117,16 +117,17 @@ Block Explorer: https://sepolia.etherscan.io
 
 ## Getting Test Tokens
 
-### Method 1: Faucets (for ETH)
+### Get Sepolia ETH (for gas fees)
 - https://sepoliafaucet.com/
 - https://www.infura.io/faucet/sepolia
 
-### Method 2: Mint Tokens (if you have access)
-```bash
-npx hardhat console --network sepolia
-const token = await ethers.getContractAt("MockERC20", "0x986ea3...")
-await token.mint("YOUR_ADDRESS", ethers.parseEther("1000"))
-```
+### Get MOCK Tokens 🎁
+Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop of MOCK tokens!
+
+**Token Details:**
+- Address: `0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03`
+- Symbol: MOCK
+- Network: Sepolia
 
 ---
 

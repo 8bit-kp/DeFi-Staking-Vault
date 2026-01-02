@@ -2,6 +2,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Prerequisites
+- MetaMask or another Web3 wallet
+- Sepolia testnet ETH (for gas fees)
+- MOCK tokens - Contact [@0xkishan_](https://x.com/0xkishan_) on X for an airdrop! 🎁
+
+### Run Development Server
+
 First, run the development server:
 
 ```bash

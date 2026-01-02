@@ -231,15 +231,17 @@ function totalStaked() external view returns (uint256)
 
 ### MockERC20.sol (Test Token)
 ```solidity
-function mint(address to, uint256 amount) external
-// Mints test tokens (useful for testing)
-
 function approve(address spender, uint256 amount) external returns (bool)
-// Standard ERC20 approve
+// Standard ERC20 approve for staking
+
+function transfer(address to, uint256 amount) external returns (bool)
+// Standard ERC20 transfer
 
 function balanceOf(address account) external view returns (uint256)
 // Standard ERC20 balance check
 ```
+
+**Need MOCK tokens?** Contact [@0xkishan_](https://x.com/0xkishan_) on X for an airdrop! 🎁
 
 ## Deployment Guide
 
@@ -299,13 +301,10 @@ To add Sepolia to MetaMask:
 
 ## Local Development Tips
 
-### Get Test Tokens
-```bash
-# In Hardhat console
-npx hardhat console --network sepolia
-> const MockERC20 = await ethers.getContractAt("MockERC20", "0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03")
-> await MockERC20.mint("YOUR_ADDRESS", ethers.parseEther("1000"))
-```
+### Get MOCK Test Tokens 🎁
+Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop of MOCK tokens to your wallet address!
+
+**Token Address:** `0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03`
 
 ### Common Issues
 

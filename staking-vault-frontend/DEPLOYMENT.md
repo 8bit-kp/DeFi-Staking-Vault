@@ -30,6 +30,10 @@ Visit https://de-fi-staking-vault.vercel.app/ (Local development)
 
 **Live Production**: https://de-fi-staking-vault.vercel.app
 
+### 4. Get MOCK Tokens 🎁
+
+Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop of MOCK tokens to start staking!
+
 ## Features
 
 **Minimalistic Modern UI**

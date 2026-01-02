@@ -198,13 +198,10 @@ Visit https://de-fi-staking-vault.vercel.app/ and test all features!
 - Add screenshots to README
 - Create a demo video
 
-### 4. Get Test Tokens
-```bash
-# In Hardhat console
-npx hardhat console --network sepolia
-> const token = await ethers.getContractAt("MockERC20", "0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03")
-> await token.mint("YOUR_ADDRESS", ethers.parseEther("1000"))
-```
+### 4. Get MOCK Tokens 🎁
+Contact [@0xkishan_](https://x.com/0xkishan_) on X (Twitter) for an airdrop of MOCK tokens!
+
+**Token Address:** `0x986ea3157ae92ccc9ca3a87d58dfcc64e654bf03`
 
 ---
 
