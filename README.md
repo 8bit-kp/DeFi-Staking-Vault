@@ -129,9 +129,9 @@ Visit the live deployment:
 - **Dashboard**: https://de-fi-staking-vault.vercel.app/dashboard
 
 Or run locally:
-- Development: https://de-fi-staking-vault.vercel.app/
-- Landing Page: https://de-fi-staking-vault.vercel.app/
-- Dashboard: https://de-fi-staking-vault.vercel.app//dashboard
+- Development: https://localhost:3000/
+- Landing Page: https://localhost:3000/
+- Dashboard: https://localhost:3000/dashboard
 
 ## Testing
 
