@@ -26,7 +26,9 @@ export const MOCK_TOKEN_ADDRESS = "0xYourDeployedTokenAddress" as `0x${string}`;
 npm run dev
 ```
 
-Visit http://localhost:3000
+Visit https://de-fi-staking-vault.vercel.app/ (Local development)
+
+**Live Production**: https://de-fi-staking-vault.vercel.app
 
 ## Features
 

@@ -95,7 +95,7 @@ defi-staking-vault-main/
 # Frontend
 cd staking-vault-frontend
 npm run dev
-# Visit http://localhost:3000
+# Visit https://de-fi-staking-vault.vercel.app/ (or https://de-fi-staking-vault.vercel.app for live demo)
 
 # Smart Contracts (testing)
 cd defi-staking-vault
@@ -183,10 +183,12 @@ Routes:
 cd staking-vault-frontend
 npm run dev
 ```
-Visit http://localhost:3000 and test all features!
+Visit https://de-fi-staking-vault.vercel.app/ and test all features!
+
+**Or use the live deployment**: https://de-fi-staking-vault.vercel.app
 
 ### 2. Deploy to Production
-- **Vercel** (Recommended): Push to GitHub and import
+- **Vercel** (Recommended): ✅ Already deployed at https://de-fi-staking-vault.vercel.app
 - **Netlify**: Deploy the build output
 - **Self-hosted**: Use `npm start` after building
 

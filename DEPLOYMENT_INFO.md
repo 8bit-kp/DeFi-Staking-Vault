@@ -22,7 +22,7 @@
 
 1. **Get Test Tokens**: The deployed MockERC20 allows anyone to mint tokens for testing
 2. **Connect Wallet**: Use MetaMask or any Web3 wallet on Sepolia network
-3. **Interact**: Use the frontend at http://localhost:3000 or deploy it to production
+3. **Interact**: Use the frontend at https://de-fi-staking-vault.vercel.app (or run locally at https://de-fi-staking-vault.vercel.app/)
 
 ## Contract Interactions
 

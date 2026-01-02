@@ -10,7 +10,7 @@ A complete decentralized staking vault application built with Solidity smart con
 
 ## Live Demo
 
-**Frontend**: [Your deployment URL here]  
+**Frontend**: https://de-fi-staking-vault.vercel.app  
 **Network**: Sepolia Testnet  
 **Deployed Contracts**: See [DEPLOYMENT_INFO.md](./DEPLOYMENT_INFO.md)
 
@@ -123,10 +123,15 @@ npm run build
 npm start
 ```
 
-Visit:
-- Development: http://localhost:3000
-- Landing Page: http://localhost:3000
-- Dashboard: http://localhost:3000/dashboard
+Visit the live deployment:
+- **Production**: https://de-fi-staking-vault.vercel.app
+- **Landing Page**: https://de-fi-staking-vault.vercel.app
+- **Dashboard**: https://de-fi-staking-vault.vercel.app/dashboard
+
+Or run locally:
+- Development: https://de-fi-staking-vault.vercel.app/
+- Landing Page: https://de-fi-staking-vault.vercel.app/
+- Dashboard: https://de-fi-staking-vault.vercel.app//dashboard
 
 ## Testing
 
