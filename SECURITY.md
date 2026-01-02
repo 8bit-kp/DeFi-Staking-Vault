@@ -2,8 +2,6 @@
 
 ## Reporting Security Issues
 
-The DeFi Staking Vault team takes security seriously. We appreciate your efforts to responsibly disclose your findings.
-
 ### Please Do Not:
 - Open public issues for security vulnerabilities
 - Share vulnerabilities publicly before they are fixed
@@ -17,7 +15,7 @@ The DeFi Staking Vault team takes security seriously. We appreciate your efforts
 
 ## Contact
 
-For security issues, please email: [Add your security email here]
+For security issues, please email: Kishanpalp08@gmail.com
 
 Or use GitHub's private vulnerability reporting feature.
 
